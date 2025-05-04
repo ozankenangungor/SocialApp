@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Slot, Stack, Tabs } from 'expo-router'
 
-export default function RootLayout() {
-    return <Slot />
+export default function Search() {
+    return (
+        <View>
+            <Text>Search</Text>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({})
