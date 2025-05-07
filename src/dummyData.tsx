@@ -41,7 +41,7 @@ export const dummyUsers: User[] = [
 export const dummyPosts: Post[] = [
     {
         id: '1',
-        createdAt: '2024-05-01T10:00:00Z',
+        createdAt: '2025-05-02T10:00:00Z',
         content:
             'Just launched my new project! Check it out and let me know what you think.',
         user_id: '1',
