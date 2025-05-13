@@ -6,6 +6,12 @@ import { Slot, Stack, Tabs } from 'expo-router'
 
 import { ThemeProvider, DarkTheme } from '@react-navigation/native'
 
+import { AuthProvider } from '@/providers/AuthProvider';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
 const myTheme = {
     ...DarkTheme,
     colors: {
@@ -18,7 +24,11 @@ const myTheme = {
 export default function RootLayout() {
     return (
         <ThemeProvider value={myTheme}>
-            <Slot />
+            <QueryClientProvider client={queryClient}>
+                <AuthProvider>
+                    <Slot />
+                </AuthProvider>
+            </QueryClientProvider>
         </ThemeProvider>
     )
 }

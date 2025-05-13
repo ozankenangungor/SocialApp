@@ -4,25 +4,34 @@ import {
     TextInput,
     TouchableOpacity,
     Pressable,
+    Alert,
 } from 'react-native';
 import { Link } from 'expo-router';
 import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export default function SignUpScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleLogin = async () => {
+    const handleSignUp = async () => {
         if (!email || !password) {
-            // TODO: Add proper error handling
+            Alert.alert('Please enter an email and password');
             return;
         }
 
         try {
             setIsLoading(true);
-            // TODO: Implement actual login logic here
-            console.log('Login attempt with:', { email });
+            const {
+                data: { session },
+                error,
+            } = await supabase.auth.signUp({ email, password });
+
+            if (error) Alert.alert(error.message);
+
+            if (!session)
+                Alert.alert('Please check your inbox for email verification!');
         } catch (error) {
             console.error('Login error:', error);
             // TODO: Add proper error handling
@@ -71,7 +80,7 @@ export default function SignUpScreen() {
                     <TouchableOpacity
                         className='w-full bg-white py-3 rounded-lg mt-6'
                         activeOpacity={0.8}
-                        onPress={handleLogin}
+                        onPress={handleSignUp}
                         disabled={isLoading}
                     >
                         <Text className='text-black text-center font-semibold'>
