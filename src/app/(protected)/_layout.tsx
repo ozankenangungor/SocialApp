@@ -19,7 +19,7 @@ export default function ProtectedLayout() {
                 options={{
                     title: 'New Thread',
                     presentation: 'modal',
-                    animation: 'slide_from_bottom',
+                    //animation: 'slide_from_bottom',
                 }}
             />
         </Stack>
